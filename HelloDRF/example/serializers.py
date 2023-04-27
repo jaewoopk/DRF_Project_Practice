@@ -4,7 +4,7 @@ from .models import Book
 class BookSerializer(serializers.ModelSerializer) : # --> 최신 방법
     class Meta :
         model = Book
-        fields = ['bid', 'title', 'author', 'category', 'pages', 'price', 'publised_date', 'description']
+        fields = ['bid', 'title', 'author', 'category', 'pages', 'price', 'published_date', 'description']
 
 # class BookSerializer(serializers.Serializer) : --> 구식 방법
     # bid = serializers.IntegerField(primary_key=True) # 책 ID

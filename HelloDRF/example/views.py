@@ -22,7 +22,7 @@ def booksAPI(request) :
         books = Book.objects.all() # Book 모델로부터 전체 데이터 가져오기
         serializer = BookSerializer(books, many=True)
         # 시리얼라이저에 전체 데이터를 한 번에 집어넣기 (직렬화, many=True)
-        return Response(serializer.data, stauts=status.HTTP_200_OK) # return Response
+        return Response(serializer.data, status=status.HTTP_200_OK) # return Response
     elif request.method == 'POST' : # POST 요청(도서 정보 등록)
         serializer = BookSerializer(data=request.data)
         # POST 요청으로 들어온 데이터를 시리얼라이저에 집어넣기
@@ -36,7 +36,7 @@ def booksAPI(request) :
 
 @api_view(['GET'])
 def bookAPI(request, bid) : # /book/bid
-    book = get_object_or_404(Book, bid=bid)
+    book = get_object_or_404(Book, bid=bid) # bid = id인 데이터를 Book에서 가져오고, 없으면 404에러
     serializer = BookSerializer(book) # 시리얼라이저에 데이터를 집어넣기 (직렬화)
     return Response(serializer.data, status=status.HTTP_200_OK) # return Response!
 
